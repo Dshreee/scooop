@@ -1,0 +1,29 @@
+{% extends 'back/master.html' %}
+{% load static%}
+
+{% block mainblock %}
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!--  Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Error<br><small></small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>{{error}}</li>
+                            
+                        </ul>
+                        <!-- END Header -->
+                        
+                    </div>
+                    <!-- END Page Content -->
+{% endblock %}
+
+{% block footerblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/js/pages/tablesDatatables.js'%}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}

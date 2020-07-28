@@ -1,0 +1,71 @@
+{% extends 'back/master.html' %}
+{% load static%}
+
+{% block mainblock %}
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Datatables Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Manager<br><small></small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>List</li>
+                            <li><a href="/panel/manager/list">manager</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                
+
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>IP Address</th>
+                                            <th>Country</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for cc in man %}
+                                        <tr>
+                                            <td class="text-center">{{cc.pk}}</td>
+                                            <td>{{cc.name}}</td>
+                                            <td>{{cc.uname}}</td>
+                                            <td>{{cc.email}}</td>
+                                            <td>{{cc.ip}}</td>
+                                            <td>{{cc.country}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'user_groups' pk=cc.pk%}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Groups</i></a>
+                                                    <a href="{%url 'user_perms' pk=cc.pk%}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Permissions</i></a>
+                                                    <a href="{%url 'manager_delete' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                    
+                                                </div>
+                                            </td>
+
+                                       {% endfor %}
+                                      
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+{% endblock %}
+
+{% block footerblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/js/pages/tablesDatatables.js'%}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}

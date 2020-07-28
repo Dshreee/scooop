@@ -1,0 +1,66 @@
+{% extends 'back/master.html' %}
+{% load static%}
+
+{% block mainblock %}
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Datatables Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Sub category<br><small></small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Tables</li>
+                            <li><a href="/panel/category/list">Sub categories</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                
+
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Category </th>
+                                            <th>Sub category</th>
+
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for cc in scat %}
+                                        <tr>
+                                            <td class="text-center">{{cc.pk}}</td>
+                                            <td>{{cc.catname}}</td>
+                                            <td>{{cc.name}}</td>
+
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Edit</i></a>
+                                                    <a href="" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+
+                                       {% endfor %}
+                                      
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+{% endblock %}
+
+{% block footerblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/js/pages/tablesDatatables.js'%}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'back/master.html' %}
+{% load static%}
+
+{% block mainblock %}
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!--  Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Sub category<br><small></small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Tables</li>
+                            <li><a href="/panel/category/list">Sub categories</a></li>
+                        </ul>
+                        <!-- END Header -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                           
+                                        </div>
+                                        <h2><strong>Add</strong> Sub category</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'subcategory_add' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-text-input">Sub category name</label>
+                                            <div class="col-md-9">
+                                                <textarea type="text" id="name" name="name" rows="2" class="form-control" placeholder="text">
+                                                </textarea>
+                                            </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-select">Category</label>
+                                            <div class="col-md-9">
+                                                <select id="category" name="category" class="form-control" size="1">
+                                                    {% for i in cat %}
+                                                  
+                                                    <option value="{{i.pk}}">{{i.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                                                                                                 
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>  Submit</button>
+                                               
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                    </div>
+                    <!-- END Page Content -->
+{% endblock %}
+
+{% block footerblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/js/pages/tablesDatatables.js'%}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}

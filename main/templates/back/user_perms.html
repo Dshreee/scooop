@@ -1,0 +1,101 @@
+{% extends 'back/master.html' %}
+{% load static%}
+
+{% block mainblock %}
+
+                    <!-- Datatables Header -->
+                    <div class="content-header">
+                        <div class="header-section">
+                            <h1>
+                                <i class="fa fa-table"></i>User Permissions<br><small></small>
+                            </h1>
+                        </div>
+                    </div>
+                    <ul class="breadcrumb breadcrumb-top">
+                        <li>List</li>
+                        <li><a href="/panel/manager/group/show">User Permissions</a></li>
+                    </ul>
+                    <!-- END Datatables Header -->
+                    
+                        <!-- Add group block -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                           
+                                        </div>
+                                        <h2><strong>Grant Permissions To</strong> User</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'user_perms_add' pk=pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-select">Users</label>
+                                            <div class="col-md-9">
+                                                <select id="pname" name="pname" class="form-control" size="1">
+                                                    {% for i in perms %}
+                                                  
+                                                    <option value="{{i.name}}">{{i.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" id="submit" name="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>  Add</button>
+                                               
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                    </div>
+                    <!-- END Add group block -->
+                    <div id="page-content">  
+                    
+                        <!-- Datatables Content -->
+                        <div class="block ">
+                            <div class="block-title">
+                                
+
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>                                           
+                                            <th>Granted Permissions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for cc in uperms %}
+                                        <tr>                                            
+                                            <td>{{cc}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'user_perms_del' pk=pk name=cc %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+
+                                       {% endfor %}
+                                      
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+{% endblock %}
+
+{% block footerblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/js/pages/tablesDatatables.js'%}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}
