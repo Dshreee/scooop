@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'manager',
     'newsletter',
     'blacklist',
-    'qr_code',
+    #'qr_code',
     
 ]
 
