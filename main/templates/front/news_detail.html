@@ -1,6 +1,6 @@
 {% extends 'front/master.html' %}
 {% load static %}
-{% load qr_code %}
+<!--{% load qr_code %}-->
 
 
 
@@ -134,7 +134,7 @@
                         </a>
 					</div>
 					<br/><br/><br/>
-					<div>
+					<!-- <div>
 						<div class="how2 how2-cl4 flex-s-c">
 							<h3 class="f1-m-2 cl3 tab01-title">
 								QR code
@@ -143,7 +143,7 @@
 						<div class="flex-wr-s-s m-rl--5">
 							{% autoescape on %}{% qr_from_text i.headline|safe size=10 border=6 %}{% endautoescape %}
 						</div>
-					</div>
+					</div>-->
 					
                 </div>
             </div>
