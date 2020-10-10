@@ -1,1 +1,1 @@
-web: gunicorn firstsite.wsgi
+web: gunicorn thescoop.wsgi

@@ -62,7 +62,7 @@
             <!-- Login Block -->
             <div class="block push-bit">
                 <!-- Login Form -->
-                
+                {% csrf_token %}
                 <form action="{%url 'mylogin' %}" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
                     
                     {% csrf_token %}
@@ -100,6 +100,7 @@
                 <!-- Reminder Form -->
                 <form action="login_full.html#reminder" method="post" id="form-reminder" class="form-horizontal form-bordered form-control-borderless display-none">
                     <div class="form-group">
+                        {% csrf_token %}
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-envelope"></i></span>

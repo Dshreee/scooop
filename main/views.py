@@ -11,7 +11,7 @@ from ip2geotools.databases.noncommercial import DbIpCity #to get the city via ip
 
 # Create your views here.
 def home(request):
-    site=Main.objects.get(pk=2)  #Main object(2) in admin
+    site=Main.objects.get(pk=1)  #Main object(1) in admin
     news = News.objects.filter(act=1).order_by('-pk')
     news2 = News.objects.filter(act=1).order_by('-pk')[:6]
     cat = Category.objects.all()
@@ -24,7 +24,7 @@ def home(request):
 
 def about(request):
     sitename = 'ABOUT'
-    site=Main.objects.get(pk=2)  #Main object(2) in admin
+    site=Main.objects.get(pk=1)  #Main object(2) in admin
     news = News.objects.filter(act=1).order_by('-pk')
     news2 = News.objects.filter(act=1).order_by('-pk')[:6]
     cat = Category.objects.all()
@@ -201,7 +201,7 @@ def site_settings(request):
             error = "All Fields Requirded"
             return render(request, 'back/error.html' , {'error':error})
 
-        b = Main.objects.get(pk=2)
+        b = Main.objects.get(pk=1)
         b.name = sitename
         b.tel = tel
         b.fblink = fblink
@@ -211,5 +211,5 @@ def site_settings(request):
         b.aboutus = aboutus
         
         b.save()
-    site = Main.objects.get(pk=2)    
+    site = Main.objects.get(pk=1)    
     return render(request,'back/setting.html',{'site':site})
