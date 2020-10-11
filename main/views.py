@@ -11,6 +11,10 @@ from ip2geotools.databases.noncommercial import DbIpCity #to get the city via ip
 
 # Create your views here.
 def home(request):
+    #authorization check
+    if not request.user.is_authenticated:
+        return redirect('home')
+
     site=Main.objects.get(pk=1)  #Main object(1) in admin
     news = News.objects.filter(act=1).order_by('-pk')
     news2 = News.objects.filter(act=1).order_by('-pk')[:6]
