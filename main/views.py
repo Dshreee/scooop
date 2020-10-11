@@ -13,17 +13,29 @@ from ip2geotools.databases.noncommercial import DbIpCity #to get the city via ip
 def home(request):
     #authorization check
     if not request.user.is_authenticated:
-        return redirect('home')
+        #return redirect('home')
+        site=Main.objects.get(pk=1)  #Main object(1) in admin
+        news = News.objects.filter(act=1).order_by('-pk')
+        news2 = News.objects.filter(act=1).order_by('-pk')[:6]
+        cat = Category.objects.all()
+        scat = SubCategory.objects.all()
+        latestnews = News.objects.filter(act=1).order_by('-pk')[:3] #act is used for knowing if the news is published or not
+        latestnews2 = News.objects.filter(act=1).order_by('-pk')[4:8]
+        popnews = News.objects.filter(act=1).order_by('-show')
+        return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'scat':scat,'latestnews':latestnews,'latestnews2':latestnews2,'popnews':popnews,'news2':news2})
 
-    site=Main.objects.get(pk=1)  #Main object(1) in admin
-    news = News.objects.filter(act=1).order_by('-pk')
-    news2 = News.objects.filter(act=1).order_by('-pk')[:6]
-    cat = Category.objects.all()
-    scat = SubCategory.objects.all()
-    latestnews = News.objects.filter(act=1).order_by('-pk')[:3] #act is used for knowing if the news is published or not
-    latestnews2 = News.objects.filter(act=1).order_by('-pk')[4:8]
-    popnews = News.objects.filter(act=1).order_by('-show')
-    return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'scat':scat,'latestnews':latestnews,'latestnews2':latestnews2,'popnews':popnews,'news2':news2})
+    else:
+       site=Main.objects.get(pk=1)  #Main object(1) in admin
+        news = News.objects.filter(act=1).order_by('-pk')
+        news2 = News.objects.filter(act=1).order_by('-pk')[:6]
+        cat = Category.objects.all()
+        scat = SubCategory.objects.all()
+        latestnews = News.objects.filter(act=1).order_by('-pk')[:3] #act is used for knowing if the news is published or not
+        latestnews2 = News.objects.filter(act=1).order_by('-pk')[4:8]
+        popnews = News.objects.filter(act=1).order_by('-show')
+        return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'scat':scat,'latestnews':latestnews,'latestnews2':latestnews2,'popnews':popnews,'news2':news2})
+ 
+
 
 
 def about(request):
